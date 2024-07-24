@@ -32,7 +32,8 @@ remove_dots() {
 # Dump PG database
 
 if [ $(remove_dots "$POSTGRESQL_VERSION") -gt "$REF_VERSION" ]; then
-    PGPASSFILE="$DB_USER_PASSFILE" pg_dump -U "$DB_USER" -h $DB_HOST -p $DB_POST -d "$DB_NAME" > "$BACKUP_DIR/dump_$TIMESTAMP.sql"
+    PGPASSFILE="$DB_USER_PASSFILE" 
+    pg_dump -U "$DB_USER" -h $DB_HOST -p $DB_POST -d "$DB_NAME" > "$BACKUP_DIR/dump_$TIMESTAMP.sql"
 else
     pg_dump -h $DB_HOST -U "$DB_USER" -d "$DB_NAME" -w > "$BACKUP_DIR/dump_$TIMESTAMP.sql"
 fi
